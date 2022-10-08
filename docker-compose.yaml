@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  db:
+    image: bitnami/mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/data:/bitnami/mysql/data
+      - ./mysql/initdb:/docker-entrypoint-initdb.d
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+  api:
+    build: ./bds-go-auth-service
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_URL=root:@tcp(db:3306)/bds?parseTime=true
+      - PORT=3000
+      - JWT_SECRET=huyth12@0933970824
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+
