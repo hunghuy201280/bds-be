@@ -11,15 +11,17 @@ var (
 )
 
 type Config struct {
-	Port int `yaml:"port"`
+	Port      string `yaml:"port"`
+	DBUrl     string `yaml:"dbUrl"`
+	JWTSecret string `yaml:"jwtSecret"`
 }
 
-func Load() *Config {
-	var cfg = &Config{}
-
+func LoadConfig() *Config {
+	viper.AddConfigPath("./configs/")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./configs/")
+
+	viper.AutomaticEnv()
 
 	err := viper.ReadInConfig()
 	if err != nil {
@@ -27,7 +29,7 @@ func Load() *Config {
 	}
 
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "__"))
-	viper.AutomaticEnv()
+	var cfg = &Config{}
 
 	err = viper.Unmarshal(cfg)
 	if err != nil {

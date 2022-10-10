@@ -25,7 +25,7 @@ func Register(ctx component.AppContext) gin.HandlerFunc {
 			panic(err)
 		}
 
-		c.JSON(http.StatusCreated, common.NewSuccessResponse(userId, nil, nil))
+		c.JSON(http.StatusCreated, common.NewSuccessResponse(http.StatusCreated, "success", userId, nil, nil))
 
 	}
 }

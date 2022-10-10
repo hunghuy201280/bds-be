@@ -3,7 +3,6 @@ package middleware
 import (
 	"bds-go-auth-service/common"
 	"bds-go-auth-service/component"
-	"bds-go-auth-service/component/tokenprovider"
 	"github.com/gin-gonic/gin"
 	"strings"
 )
@@ -13,7 +12,7 @@ func Authenticate(ctx component.AppContext) gin.HandlerFunc {
 		jwtProvider := ctx.GetJWTProvider()
 		authHeader := strings.Split(c.GetHeader("Authorization"), "Bearer ")
 		if len(authHeader) != 2 {
-			panic(tokenprovider.ErrInvalidToken)
+			panic(common.NewUnauthorized())
 		}
 		tokenString := authHeader[1]
 		if tokenString == "" {

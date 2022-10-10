@@ -3,9 +3,9 @@ package main
 import (
 	"bds-go-auth-service/common/l"
 	"bds-go-auth-service/component/tokenprovider/jwt"
+	"bds-go-auth-service/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"os"
 )
 
 var (
@@ -13,9 +13,14 @@ var (
 )
 
 func main() {
-	dsn := os.Getenv("DB_URL")
-	jwtSecret := os.Getenv("JWT_SECRET")
-	port := os.Getenv("PORT")
+	config := configs.LoadConfig()
+
+	//dsn := os.Getenv("DB_URL")
+	//jwtSecret := os.Getenv("JWT_SECRET")
+	//port := os.Getenv("PORT")
+	dsn := config.DBUrl
+	jwtSecret := config.JWTSecret
+	port := config.Port
 	tokenProvider := jwt.NewTokenJWTProvider(jwtSecret)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {

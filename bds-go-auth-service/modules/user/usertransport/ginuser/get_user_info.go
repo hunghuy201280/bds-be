@@ -26,7 +26,7 @@ func GetUserInfo(ctx component.AppContext) gin.HandlerFunc {
 			panic(err)
 		}
 
-		c.JSON(http.StatusCreated, common.NewSuccessResponse(user, nil, nil))
+		c.JSON(http.StatusOK, common.NewSuccessResponse(http.StatusOK, "success", user, nil, nil))
 
 	}
 }
