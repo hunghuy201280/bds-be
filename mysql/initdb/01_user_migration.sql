@@ -24,7 +24,7 @@ USE bds;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users`  (
                          `id` int NOT NULL AUTO_INCREMENT,
                          `phone` varchar(15) NOT NULL,
                          `fb_id` varchar(50) DEFAULT NULL,
