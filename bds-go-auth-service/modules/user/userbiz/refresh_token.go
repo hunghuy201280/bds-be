@@ -36,7 +36,7 @@ func (biz *refreshTokenBiz) RefreshToken(ctx context.Context, data *usermodel.Us
 		return nil, nil, err
 	}
 
-	newRefreshToken, err = biz.refreshProvider.Generate(*tokenPayload, TokenExpiry)
+	newRefreshToken, err = biz.refreshProvider.Generate(*tokenPayload, RefreshTokenExpiry)
 	if err != nil {
 		return nil, nil, err
 	}
