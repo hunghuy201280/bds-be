@@ -33,7 +33,7 @@ func (j *jwtProvider) Generate(payload tokenprovider.TokenPayload, expiry int) (
 			Payload: payload,
 			RegisteredClaims: jwt.RegisteredClaims{
 				ExpiresAt: &jwt.NumericDate{
-					Time: time.Now().UTC().Add(time.Second * time.Duration(expiry)),
+					Time: time.Now().UTC().Add(time.Duration(expiry)),
 				},
 				IssuedAt: &jwt.NumericDate{
 					Time: time.Now().UTC(),

@@ -22,12 +22,13 @@ func main() {
 	jwtSecret := config.JWTSecret
 	port := config.Port
 	tokenProvider := jwt.NewTokenJWTProvider(jwtSecret)
+	refreshTokenProvider := jwt.NewTokenJWTProvider(config.JWTRefreshSecret)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		ll.Fatal("err when opening db connection", l.Error(err))
 	}
 
-	if err := RunService(db, port, tokenProvider); err != nil {
+	if err := RunService(db, port, tokenProvider, refreshTokenProvider); err != nil {
 		ll.Fatal("err when starting service", l.Error(err))
 	}
 

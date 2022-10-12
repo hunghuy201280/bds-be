@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	TokenExpiry = int(15 * 24 * time.Hour)
+	TokenExpiry        = int(15 * 24 * time.Hour)
+	RefreshTokenExpiry = 2 * TokenExpiry
 )
 
 type LoginStore interface {
@@ -18,36 +19,38 @@ type LoginStore interface {
 }
 
 type loginBiz struct {
-	loginStore LoginStore
-	hasher     common.Hasher
-	provider   tokenprovider.Provider
+	loginStore      LoginStore
+	hasher          common.Hasher
+	provider        tokenprovider.Provider
+	refreshProvider tokenprovider.Provider
 }
 
-func NewLoginBiz(store LoginStore, hasher common.Hasher, provider tokenprovider.Provider) *loginBiz {
+func NewLoginBiz(store LoginStore, hasher common.Hasher, provider tokenprovider.Provider, refreshProvider tokenprovider.Provider) *loginBiz {
 	return &loginBiz{
 		store,
 		hasher,
 		provider,
+		refreshProvider,
 	}
 }
 
-func (biz *loginBiz) Login(ctx context.Context, data *usermodel.UserLogin) (*tokenprovider.Token, error) {
+func (biz *loginBiz) Login(ctx context.Context, data *usermodel.UserLogin) (*tokenprovider.Token, *tokenprovider.Token, error) {
 	err := data.Validate()
 	if err != nil {
-		return nil, common.ErrLoginFailed(err)
+		return nil, nil, common.ErrLoginFailed(err)
 	}
 	store := biz.loginStore
 	user, err := store.FindOneUser(ctx, &usermodel.UserFind{
 		Phone: data.Phone,
 	})
 	if err != nil {
-		return nil, common.ErrLoginFailed(errors.New("wrong username or password"))
+		return nil, nil, common.ErrLoginFailed(errors.New("wrong username or password"))
 	}
 
 	hasher := biz.hasher
 
 	if hasher.ValidatePassword(user.Password, data.Password+user.Salt) {
-		return nil, common.ErrLoginFailed(errors.New("wrong username or password"))
+		return nil, nil, common.ErrLoginFailed(errors.New("wrong username or password"))
 	}
 	token, err := biz.provider.Generate(tokenprovider.TokenPayload{
 		UserId: user.Id,
@@ -55,9 +58,14 @@ func (biz *loginBiz) Login(ctx context.Context, data *usermodel.UserLogin) (*tok
 	}, TokenExpiry)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return token, nil
+	refreshToken, err := biz.refreshProvider.Generate(tokenprovider.TokenPayload{
+		UserId: user.Id,
+		Role:   user.Role.String(),
+	}, RefreshTokenExpiry)
+
+	return token, refreshToken, nil
 
 }

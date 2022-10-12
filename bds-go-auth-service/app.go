@@ -10,9 +10,9 @@ import (
 	"net/http"
 )
 
-func RunService(db *gorm.DB, port string, provider tokenprovider.Provider) error {
+func RunService(db *gorm.DB, port string, provider tokenprovider.Provider, refreshProvider tokenprovider.Provider) error {
 
-	appCtx := component.NewAppContext(db, provider)
+	appCtx := component.NewAppContext(db, provider, refreshProvider)
 	r := gin.Default()
 	r.Use(middleware.Recover(appCtx))
 	//r.Use(middleware.Authenticate(appCtx))

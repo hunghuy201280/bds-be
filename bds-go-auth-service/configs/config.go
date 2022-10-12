@@ -11,9 +11,10 @@ var (
 )
 
 type Config struct {
-	Port      string `yaml:"port"`
-	DBUrl     string `yaml:"dbUrl"`
-	JWTSecret string `yaml:"jwtSecret"`
+	Port             string `yaml:"port"`
+	DBUrl            string `yaml:"dbUrl"`
+	JWTSecret        string `yaml:"jwtSecret"`
+	JWTRefreshSecret string `yaml:"jwtRefreshSecret"`
 }
 
 func LoadConfig() *Config {
