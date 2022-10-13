@@ -27,9 +27,6 @@ func (biz *refreshTokenBiz) RefreshToken(ctx context.Context, data *usermodel.Us
 	if err != nil || tokenPayload == nil {
 		return nil, nil, err
 	}
-	if tokenPayload.UserId != data.UserId {
-		return nil, nil, tokenprovider.ErrInvalidToken
-	}
 
 	token, err = biz.provider.Generate(*tokenPayload, TokenExpiry)
 	if err != nil {
