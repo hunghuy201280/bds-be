@@ -19,5 +19,5 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 COPY --from=builder /app/configs /app/configs
 
 RUN chmod +x ./wait-for-it.sh
-EXPOSE 3000
+EXPOSE 2011
 CMD ./wait-for-it.sh mysql-service:3306 -t 120 && ./service
