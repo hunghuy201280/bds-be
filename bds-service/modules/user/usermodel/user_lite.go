@@ -1,6 +1,6 @@
 package usermodel
 
-import "bds-go-auth-service/common"
+import "bds-service/common"
 
 type UserLite struct {
 	common.SQLModel

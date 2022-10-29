@@ -1,7 +1,7 @@
 package usermodel
 
 import (
-	"bds-go-auth-service/common"
+	"bds-service/common"
 	"github.com/go-playground/validator/v10"
 )
 

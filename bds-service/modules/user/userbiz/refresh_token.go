@@ -1,8 +1,8 @@
 package userbiz
 
 import (
-	"bds-go-auth-service/component/tokenprovider"
-	"bds-go-auth-service/modules/user/usermodel"
+	"bds-service/component/tokenprovider"
+	"bds-service/modules/user/usermodel"
 	"context"
 )
 

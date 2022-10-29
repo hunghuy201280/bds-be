@@ -1,9 +1,9 @@
 package main
 
 import (
-	"bds-go-auth-service/common/l"
-	"bds-go-auth-service/component/tokenprovider/jwt"
-	"bds-go-auth-service/configs"
+	"bds-service/common/l"
+	"bds-service/component/tokenprovider/jwt"
+	"bds-service/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

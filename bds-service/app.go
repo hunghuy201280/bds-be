@@ -1,10 +1,10 @@
 package main
 
 import (
-	"bds-go-auth-service/component"
-	"bds-go-auth-service/component/tokenprovider"
-	"bds-go-auth-service/middleware"
-	"bds-go-auth-service/modules/realestate/retransport/ginre"
+	"bds-service/component"
+	"bds-service/component/tokenprovider"
+	"bds-service/middleware"
+	"bds-service/modules/realestate/retransport/ginre"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"

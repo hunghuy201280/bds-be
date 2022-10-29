@@ -1,10 +1,10 @@
 package userbiz
 
 import (
-	"bds-go-auth-service/common"
-	"bds-go-auth-service/common/entitycommon"
-	"bds-go-auth-service/common/l"
-	"bds-go-auth-service/modules/user/usermodel"
+	"bds-service/common"
+	"bds-service/common/entitycommon"
+	"bds-service/common/l"
+	"bds-service/modules/user/usermodel"
 	"context"
 	"errors"
 )

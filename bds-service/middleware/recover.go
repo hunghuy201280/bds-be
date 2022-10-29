@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"bds-go-auth-service/common"
-	"bds-go-auth-service/component"
+	"bds-service/common"
+	"bds-service/component"
 	"github.com/gin-gonic/gin"
 )
 

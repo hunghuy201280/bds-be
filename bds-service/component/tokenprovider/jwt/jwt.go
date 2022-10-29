@@ -1,8 +1,8 @@
 package jwt
 
 import (
-	"bds-go-auth-service/common/l"
-	"bds-go-auth-service/component/tokenprovider"
+	"bds-service/common/l"
+	"bds-service/component/tokenprovider"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/pkg/errors"
 	"time"

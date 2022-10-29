@@ -1,7 +1,7 @@
 package tokenprovider
 
 import (
-	"bds-go-auth-service/common"
+	"bds-service/common"
 	"errors"
 	"time"
 )

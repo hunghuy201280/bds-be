@@ -1,9 +1,9 @@
 package rebiz
 
 import (
-	"bds-go-auth-service/common"
-	"bds-go-auth-service/common/entitycommon"
-	"bds-go-auth-service/modules/realestate/remodel"
+	"bds-service/common"
+	"bds-service/common/entitycommon"
+	"bds-service/modules/realestate/remodel"
 	"context"
 )
 

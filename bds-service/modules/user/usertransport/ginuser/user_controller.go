@@ -1,8 +1,8 @@
 package ginuser
 
 import (
-	"bds-go-auth-service/component"
-	"bds-go-auth-service/middleware"
+	"bds-service/component"
+	"bds-service/middleware"
 	"github.com/gin-gonic/gin"
 )
 

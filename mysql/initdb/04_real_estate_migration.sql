@@ -22,7 +22,7 @@ USE bds;
 DROP TABLE IF EXISTS `real_estates`;
 CREATE TABLE `real_estates` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `address` varchar(50) NOT NULL,
+  `address` varchar(200) NOT NULL,
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
   `min_price` float NOT NULL,

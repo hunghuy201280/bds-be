@@ -1,7 +1,7 @@
 package common
 
 import (
-	"bds-go-auth-service/common/entitycommon"
+	"bds-service/common/entitycommon"
 	"time"
 )
 

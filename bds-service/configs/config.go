@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"bds-go-auth-service/common/l"
+	"bds-service/common/l"
 	"github.com/spf13/viper"
 	"strings"
 )

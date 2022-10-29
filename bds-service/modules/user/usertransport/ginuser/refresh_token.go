@@ -1,10 +1,10 @@
 package ginuser
 
 import (
-	"bds-go-auth-service/common"
-	"bds-go-auth-service/component"
-	"bds-go-auth-service/modules/user/userbiz"
-	"bds-go-auth-service/modules/user/usermodel"
+	"bds-service/common"
+	"bds-service/component"
+	"bds-service/modules/user/userbiz"
+	"bds-service/modules/user/usermodel"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

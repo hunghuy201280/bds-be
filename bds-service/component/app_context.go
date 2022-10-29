@@ -1,7 +1,7 @@
 package component
 
 import (
-	"bds-go-auth-service/component/tokenprovider"
+	"bds-service/component/tokenprovider"
 	"gorm.io/gorm"
 )
 

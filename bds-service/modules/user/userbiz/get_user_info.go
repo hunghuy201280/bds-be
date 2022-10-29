@@ -1,8 +1,8 @@
 package userbiz
 
 import (
-	"bds-go-auth-service/common"
-	"bds-go-auth-service/modules/user/usermodel"
+	"bds-service/common"
+	"bds-service/modules/user/usermodel"
 	"context"
 )
 
