@@ -12,10 +12,10 @@ FROM alpine:3.16
 WORKDIR /app
 RUN apk update && apk add bash
 
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+ARG CACHEBUST=1
 COPY --from=builder /app/service .
 COPY --from=builder /app/wait-for-it.sh .
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+ARG CACHEBUST=1
 COPY --from=builder /app/configs /app/configs
 
 RUN chmod +x ./wait-for-it.sh

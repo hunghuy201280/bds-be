@@ -1,10 +1,10 @@
 -- -------------------------------------------------------------
--- TablePlus 5.0.2(458)
+-- TablePlus 5.1.0(468)
 --
 -- https://tableplus.com/
 --
 -- Database: bds
--- Generation Time: 2022-10-25 13:46:01.7720
+-- Generation Time: 2022-10-28 22:12:37.6920
 -- -------------------------------------------------------------
 
 
@@ -17,7 +17,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE bds;
 
 DROP TABLE IF EXISTS `real_estates`;
 CREATE TABLE `real_estates` (
@@ -35,13 +34,15 @@ CREATE TABLE `real_estates` (
   `expected_sold_date` timestamp NOT NULL,
   `reason` text,
   `description` text,
-  `re_type_id` int NOT NULL,
   `built_at` varchar(4) NOT NULL,
   `real_estate_type_id` int NOT NULL,
   `province_id` int NOT NULL,
   `district_id` int NOT NULL,
   `ward_id` int NOT NULL,
   `documents` text NOT NULL,
+  `status` int DEFAULT '1',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

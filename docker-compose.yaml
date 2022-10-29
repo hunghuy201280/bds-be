@@ -4,7 +4,8 @@ services:
     build: ./bds-go-auth-service
     image: bds-go-auth-service
   bds-service:
-    build: ./bds-service
+    build:
+      context: ./bds-service
     image: bds-service
 
 

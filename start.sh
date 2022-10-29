@@ -3,6 +3,7 @@ chmod +x **/*.sh
 eval $(minikube -p minikube docker-env)
 printf "\n\n"
 echo "Starting build docker images"
+export CACHEBUST=$(date +%s)
 docker compose build
 printf "\n\n"
 echo "Deploy to minikube cluster"
