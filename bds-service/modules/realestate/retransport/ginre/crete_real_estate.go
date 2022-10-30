@@ -3,6 +3,7 @@ package ginre
 import (
 	"bds-service/common"
 	"bds-service/common/entitycommon"
+	"bds-service/common/l"
 	"bds-service/component"
 	"bds-service/modules/realestate/rebiz"
 	"bds-service/modules/realestate/remodel"
@@ -14,6 +15,10 @@ import (
 	"time"
 )
 import "github.com/jaswdr/faker"
+
+var (
+	ll = l.New()
+)
 
 func CreateRealEstate(ctx component.AppContext) gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -60,6 +65,17 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 			Documents:        strings.Join(strings.Split(fake.Lorem().Sentence(10), " "), ";"),
 			SQLModel: common.SQLModel{
 				Status: entitycommon.NORMAL,
+			},
+			Amenities: []remodel.RealEstateAmenity{
+				{
+					AmenityId: common.RandInt(1, 20),
+				},
+				{
+					AmenityId: common.RandInt(1, 20),
+				},
+				{
+					AmenityId: common.RandInt(1, 20),
+				},
 			},
 		}
 

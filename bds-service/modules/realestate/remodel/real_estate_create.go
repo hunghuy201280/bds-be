@@ -28,7 +28,7 @@ type RealEstateCreate struct {
 	DistrictId       int                 `json:"district_id" gorm:"column:district_id;" validate:"required,gte=0" `
 	WardId           int                 `json:"ward_id" gorm:"column:ward_id;" validate:"required,gte=0" `
 	Documents        string              `json:"documents" gorm:"column:documents;" validate:"required" `
-	Amenities        []RealEstateAmenity `json:"amenities" gorm:"foreignKey:ReId"`
+	Amenities        []RealEstateAmenity `json:"amenities" gorm:"foreignKey:ReId;references:Id"`
 }
 
 func (c RealEstateCreate) TableName() string {

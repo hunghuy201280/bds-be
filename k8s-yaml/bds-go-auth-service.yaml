@@ -5,7 +5,7 @@ metadata:
   labels:
     app: bds-go-auth-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: bds-go-auth-api

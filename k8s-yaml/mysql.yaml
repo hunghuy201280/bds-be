@@ -26,12 +26,21 @@ spec:
             - mountPath: "/docker-entrypoint-initdb.d"
               name: mysql-storage
               subPath: initdb
+            - mountPath: "/etc/mysql/conf.d"
+              name: mysql-storage
+              subPath: conf
           env:
             - name: MYSQL_ALLOW_EMPTY_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: bds-configmap
                   key: allow_empty_password
+            - name: LANG
+              valueFrom:
+                configMapKeyRef:
+                  name: bds-configmap
+                  key: mysql_lang
+
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:

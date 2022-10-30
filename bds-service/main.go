@@ -6,6 +6,7 @@ import (
 	"bds-service/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 var (
@@ -23,7 +24,9 @@ func main() {
 	port := config.Port
 	tokenProvider := jwt.NewTokenJWTProvider(jwtSecret)
 	refreshTokenProvider := jwt.NewTokenJWTProvider(config.JWTRefreshSecret)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+		Logger: logger.Default,
+	})
 	if err != nil {
 		ll.Fatal("err when opening db connection", l.Error(err))
 	}

@@ -1,10 +1,10 @@
 -- -------------------------------------------------------------
--- TablePlus 5.0.2(458)
+-- TablePlus 5.1.0(468)
 --
 -- https://tableplus.com/
 --
 -- Database: bds
--- Generation Time: 2022-10-25 16:07:11.5710
+-- Generation Time: 2022-10-29 15:23:25.7510
 -- -------------------------------------------------------------
 
 
@@ -16,15 +16,15 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 USE bds;
+
 
 DROP TABLE IF EXISTS `real_estate_amenities`;
 CREATE TABLE `real_estate_amenities` (
   `re_id` int NOT NULL AUTO_INCREMENT,
   `amenity_id` int NOT NULL,
-  PRIMARY KEY (`re_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`re_id`,`amenity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 

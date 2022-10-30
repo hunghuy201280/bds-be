@@ -4,3 +4,4 @@ metadata:
   name: bds-configmap
 data:
   allow_empty_password: "yes"
+  mysql_lang: "C.UTF-8"
