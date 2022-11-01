@@ -20,6 +20,52 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 2011
+          env:
+            - name: BDS_API_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bds-configmap
+                  key: db_url
+            - name: BDS_API_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: bds-configmap
+                  key: bds_api_port
+            - name: BDS_API_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bds-secret
+                  key: jwt_secret
+            - name: BDS_API_JWT_REFRESH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bds-secret
+                  key: jwt_refresh_secret
+            - name: BDS_API_S3_BUCKET_NAME
+              valueFrom:
+                  secretKeyRef:
+                    name: bds-s3-secret
+                    key: s3_bucket_name
+            - name: BDS_API_S3_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: bds-s3-secret
+                  key: s3_region
+            - name: BDS_API_S3_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bds-s3-secret
+                  key: s3_api_key
+            - name: BDS_API_S3_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bds-s3-secret
+                  key: s3_secret
+            - name: BDS_API_S3_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: bds-s3-secret
+                  key: s3_domain
 
 ---
 apiVersion: v1

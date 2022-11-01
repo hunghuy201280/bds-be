@@ -2,7 +2,6 @@ package ginre
 
 import (
 	"bds-service/common"
-	"bds-service/common/entitycommon"
 	"bds-service/common/l"
 	"bds-service/component"
 	"bds-service/modules/realestate/rebiz"
@@ -12,7 +11,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 )
 import "github.com/jaswdr/faker"
 
@@ -44,42 +42,39 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 		fake := faker.New()
 
 		data := remodel.RealEstateCreate{
-			Address:          fake.Address().Address(),
-			Latitude:         fake.Float32(2, 1, 90),
-			Longitude:        fake.Float32(2, 1, 90),
-			MinPrice:         fake.Float64(2, 1_000_000, 9_000_000),
-			MaxPrice:         fake.Float64(2, 9_000_001, 10_000_000),
-			OwnerId:          common.RandInt(1, 20),
-			Floors:           common.RandInt(1, 20),
-			Area:             fake.Float32(2, 70, 2000),
-			NoBedrooms:       common.RandInt(1, 20),
-			NoWC:             common.RandInt(1, 20),
-			ExpectedSoldDate: fake.Time().TimeBetween(time.Now(), time.Date(2024, 1, 1, 1, 1, 1, 1, time.Local)),
-			Description:      fake.Lorem().Sentence(30),
-			Reason:           fake.Lorem().Sentence(30),
-			BuiltAt:          strconv.Itoa(int(fake.Float32(0, 1990, 2020))),
-			RealEstateTypeId: common.RandInt(1, 20),
-			ProvinceId:       common.RandInt(1, 20),
-			DistrictId:       common.RandInt(1, 20),
-			WardId:           common.RandInt(1, 20),
-			Documents:        strings.Join(strings.Split(fake.Lorem().Sentence(10), " "), ";"),
-			SQLModel: common.SQLModel{
-				Status: entitycommon.NORMAL,
-			},
+			RealEstateType: remodel.RealEstateType{TypeId: 1, IsRent: fake.Bool()},
+			ProvinceId:     common.RandInt(1, 20),
+			DistrictId:     common.RandInt(1, 20),
+			WardId:         common.RandInt(1, 20),
+			Address:        fake.Address().Address(),
+			Latitude:       fake.Float32(2, 1, 90),
+			Longitude:      fake.Float32(2, 1, 90),
+			Price:          fake.Float64(2, 9000000, 90000000),
+			OwnerId:        common.RandInt(1, 20),
+			Floors:         common.RandInt(1, 20),
+			Area:           fake.Float32(2, 70, 2000),
+			NoBedrooms:     common.RandInt(1, 20),
+			NoWC:           common.RandInt(1, 20),
+			HouseFacing:    remodel.NORTH,
+			BalconyFacing:  remodel.NORTH_EAST,
+			Reason:         fake.Lorem().Sentence(30),
+			BuiltAt:        strconv.Itoa(int(fake.Float32(0, 1990, 2020))),
+			Documents:      strings.Join(strings.Split(fake.Lorem().Sentence(10), " "), ";"),
 			Amenities: []remodel.RealEstateAmenity{
 				{
-					AmenityId: common.RandInt(1, 20),
+					AmenityId: 3,
 				},
 				{
-					AmenityId: common.RandInt(1, 20),
+					AmenityId: 4,
 				},
 				{
-					AmenityId: common.RandInt(1, 20),
+					AmenityId: 5,
 				},
 			},
 		}
 
 		db := ctx.GetMainDbConnection()
+
 		store := restore.NewSQLStore(db)
 		biz := rebiz.NewCreateRealEstateBiz(store)
 		id, err := biz.CreateRealEstate(c.Request.Context(), &data)

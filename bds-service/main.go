@@ -3,6 +3,7 @@ package main
 import (
 	"bds-service/common/l"
 	"bds-service/component/tokenprovider/jwt"
+	"bds-service/component/uploadprovider"
 	"bds-service/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -24,14 +25,22 @@ func main() {
 	port := config.Port
 	tokenProvider := jwt.NewTokenJWTProvider(jwtSecret)
 	refreshTokenProvider := jwt.NewTokenJWTProvider(config.JWTRefreshSecret)
+	uploadProvider := uploadprovider.NewS3Provider(
+		config.S3BucketName,
+		config.S3Region,
+		config.S3APIKey,
+		config.S3Secret,
+		config.S3Domain,
+	)
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		Logger: logger.Default,
+		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
 		ll.Fatal("err when opening db connection", l.Error(err))
 	}
 
-	if err := RunService(db, port, tokenProvider, refreshTokenProvider); err != nil {
+	if err := RunService(db, port, tokenProvider, refreshTokenProvider, uploadProvider); err != nil {
 		ll.Fatal("err when starting service", l.Error(err))
 	}
 

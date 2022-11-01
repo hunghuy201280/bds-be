@@ -132,3 +132,11 @@ func ErrEntityDeleted(entity string, err error) *AppError {
 		fmt.Sprintf("Err%sDeleted", entity),
 	)
 }
+
+func ErrCannotParseValue(value string, destination string) *AppError {
+	return NewCustomError(
+		errors.New(fmt.Sprintf("cannot parse %s to %s", value, destination)),
+		fmt.Sprintf("Cannot parse %s to %s", value, destination),
+		fmt.Sprintf("ErrCannotParse%s", destination),
+	)
+}

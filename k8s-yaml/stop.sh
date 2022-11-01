@@ -10,6 +10,8 @@ kubectl delete -f "${CURRENT_DIR}"/bds-go-auth-service.yaml
 kubectl delete -f "${CURRENT_DIR}"/bds-service.yaml
 kubectl delete -f "${CURRENT_DIR}"/mysql.yaml
 kubectl delete -f "${CURRENT_DIR}"/bds-configmap.yaml
+kubectl delete -f "${CURRENT_DIR}"/bds-secret.yaml
+kubectl delete -f "${CURRENT_DIR}"/bds-s3-secret.yaml
 kubectl delete -f "${CURRENT_DIR}"/mysql-persistent-storage-claim.yaml
 kubectl delete -f "${CURRENT_DIR}"/mysql-persistent-storage.yaml
 kubectl get pod

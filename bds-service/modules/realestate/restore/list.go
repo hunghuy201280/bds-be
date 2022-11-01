@@ -24,6 +24,13 @@ func (s *sqlStore) ListRealEstate(
 	}
 	db = db.Table(remodel.RealEstate{}.TableName()).Where(conditions)
 
+	if v := filter.RealEstateAmenityTypeIds; !goutil.IsEmpty(v) {
+		db.Preload("Amenities", "amenityId in ?", v)
+	} else {
+		db.Preload("Amenities")
+	}
+	db.Preload("RealEstateType")
+	db.Preload("Images")
 	if filter != nil {
 		if v := filter.MinPrice; v != 0 {
 			db.Where("min_price >= ?", v)
@@ -49,9 +56,6 @@ func (s *sqlStore) ListRealEstate(
 		}
 		if v := filter.RealEstateTypeIds; !goutil.IsEmpty(v) {
 			db.Where("`real_estate_type_id` in ? ", v)
-		}
-		if v := filter.RealEstateAmenityTypeIds; !goutil.IsEmpty(v) {
-			db.Preload("Amenities", "amenityId in ?", v)
 		}
 
 		if v := filter.ProvinceId; !goutil.IsEmpty(v) {

@@ -20,6 +20,27 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
+          env:
+            - name: BDS_AUTH_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bds-configmap
+                  key: db_url
+            - name: BDS_AUTH_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: bds-configmap
+                  key: bds_auth_port
+            - name: BDS_AUTH_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bds-secret
+                  key: jwt_secret
+            - name: BDS_AUTH_JWT_REFRESH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bds-secret
+                  key: jwt_refresh_secret
 
 ---
 apiVersion: v1

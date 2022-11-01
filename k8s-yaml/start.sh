@@ -5,6 +5,8 @@ BASE_DIR=$(echo "$(basename ${TEMP})")
 CURRENT_DIR=${PWD}/${BASE_DIR}
 
 kubectl apply -f "${CURRENT_DIR}/"bds-configmap.yaml
+kubectl apply -f "${CURRENT_DIR}/"bds-secret.yaml
+kubectl apply -f "${CURRENT_DIR}/"bds-s3-secret.yaml
 kubectl apply -f "${CURRENT_DIR}/"mysql-persistent-storage.yaml
 kubectl apply -f "${CURRENT_DIR}/"mysql-persistent-storage-claim.yaml
 kubectl apply -f "${CURRENT_DIR}/"mysql.yaml

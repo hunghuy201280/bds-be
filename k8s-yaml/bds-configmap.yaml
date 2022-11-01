@@ -5,3 +5,6 @@ metadata:
 data:
   allow_empty_password: "yes"
   mysql_lang: "C.UTF-8"
+  bds_api_port: "2011"
+  bds_auth_port: "3000"
+  db_url: "root:@tcp(mysql-service:3306)/bds?parseTime=true"

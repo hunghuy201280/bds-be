@@ -1,9 +1,0 @@
-environment: debug
-
-port: 2011
-
-#dbUrl: "root:@tcp(localhost:3306)/bds?parseTime=true"
-#dbUrl: "root:@tcp(db:3306)/bds?parseTime=true"
-dbUrl: "root:@tcp(mysql-service:3306)/bds?parseTime=true"
-jwtSecret: "huyth12@0933970824"
-jwtRefreshSecret: "huyth12@0933970824_refresh"

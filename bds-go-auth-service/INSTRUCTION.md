@@ -8,8 +8,8 @@ package restaurantstorage
 
 import (
 	"context"
-	"simple-rest-api/common"
-	"simple-rest-api/modules/restaurant/restaurantmodel"
+	"bds-service/common"
+	"bds-service/modules/restaurant/restaurantmodel"
 )
 
 func (s *sqlStore) Create(ctx context.Context, data *restaurantmodel.RestaurantCreate) error {

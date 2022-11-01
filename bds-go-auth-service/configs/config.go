@@ -3,7 +3,6 @@ package configs
 import (
 	"bds-go-auth-service/common/l"
 	"github.com/spf13/viper"
-	"strings"
 )
 
 var (
@@ -11,25 +10,25 @@ var (
 )
 
 type Config struct {
-	Port             string `yaml:"port"`
-	DBUrl            string `yaml:"dbUrl"`
-	JWTSecret        string `yaml:"jwtSecret"`
-	JWTRefreshSecret string `yaml:"jwtRefreshSecret"`
+	Port             string `mapstructure:"PORT"`
+	DBUrl            string `mapstructure:"DB_URL"`
+	JWTSecret        string `mapstructure:"JWT_SECRET"`
+	JWTRefreshSecret string `mapstructure:"JWT_REFRESH_SECRET"`
 }
 
 func LoadConfig() *Config {
-	viper.AddConfigPath("./configs/")
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
 
 	viper.AutomaticEnv()
-
-	err := viper.ReadInConfig()
+	viper.SetEnvPrefix("bds_auth")
+	err := viper.BindEnv("DB_URL", "db_url")
+	err = viper.BindEnv("PORT", "port")
+	err = viper.BindEnv("JWT_SECRET", "jwt_secret")
+	err = viper.BindEnv("JWT_REFRESH_SECRET", "jwt_refresh_secret")
 	if err != nil {
 		ll.Fatal("Failed to read viper config", l.Error(err))
 	}
 
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "__"))
+	//viper.SetEnvKeyReplacer(strings.NewReplacer(".", "__"))
 	var cfg = &Config{}
 
 	err = viper.Unmarshal(cfg)
