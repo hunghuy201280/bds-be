@@ -35,12 +35,17 @@ CREATE TABLE `real_estate_amenities` (
   PRIMARY KEY (`re_id`,`amenity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
 DROP TABLE IF EXISTS `real_estate_images`;
 CREATE TABLE `real_estate_images` (
                                       `re_id` int NOT NULL AUTO_INCREMENT,
                                       `image_id` int NOT NULL,
-                                      PRIMARY KEY (`re_id`,`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                                      PRIMARY KEY (`re_id`,`image_id`),
+                                      KEY `image_id` (`image_id`),
+                                      CONSTRAINT `real_estate_images_ibfk_1` FOREIGN KEY (`re_id`) REFERENCES `real_estates` (`id`),
+                                      CONSTRAINT `real_estate_images_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 DROP TABLE IF EXISTS `real_estate_post_types`;
 CREATE TABLE `real_estate_post_types` (
@@ -113,6 +118,8 @@ CREATE TABLE `images` (
                           `height` int DEFAULT NULL,
                           `cloud_name` varchar(50) DEFAULT NULL,
                           `extension` varchar(50) DEFAULT NULL,
+                          `owner_id` int NOT NULL,
+
                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

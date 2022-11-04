@@ -15,6 +15,11 @@ type ListRealEstateStore interface {
 		moreKeys ...string,
 
 	) ([]remodel.RealEstate, error)
+
+	ListRealEstateImages(
+		ctx context.Context,
+		reId int,
+	) ([]common.Image, error)
 }
 
 type listRealEstateBiz struct {

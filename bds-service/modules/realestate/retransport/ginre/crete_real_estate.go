@@ -41,6 +41,8 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fake := faker.New()
 
+		//id2 := 2
+		//id3 := 3
 		data := remodel.RealEstateCreate{
 			RealEstateType: remodel.RealEstateType{TypeId: 1, IsRent: fake.Bool()},
 			ProvinceId:     common.RandInt(1, 20),
@@ -71,6 +73,14 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 					AmenityId: 5,
 				},
 			},
+			//Images: []remodel.RealEstateImage{
+			//	{
+			//		ImageId: &id3,
+			//	},
+			//	{
+			//		ImageId: &id2,
+			//	},
+			//},
 		}
 
 		db := ctx.GetMainDbConnection()

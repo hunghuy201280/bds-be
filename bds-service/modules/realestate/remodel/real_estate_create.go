@@ -3,6 +3,7 @@ package remodel
 import (
 	"bds-service/common"
 	"github.com/go-playground/validator/v10"
+	"github.com/gookit/goutil"
 )
 
 type RealEstateCreate struct {
@@ -21,12 +22,12 @@ type RealEstateCreate struct {
 	NoBedrooms     int                 `json:"no_bedrooms" gorm:"column:no_bedrooms;" validate:"required,gte=0"`
 	NoWC           int                 `json:"no_wc" gorm:"column:no_wc;" validate:"required,gte=0"`
 	HouseFacing    Direction           `json:"house_facing" gorm:"column:house_facing;"`
-	BalconyFacing  Direction           `json:"" gorm:"column:;"`
+	BalconyFacing  Direction           `json:"balcony_facing" gorm:"column:balcony_facing;"`
 	Reason         string              `json:"reason" gorm:"column:reason;"`
 	BuiltAt        string              `json:"built_at" gorm:"column:built_at;" validate:"required,len=4"`
 	Documents      string              `json:"documents" gorm:"column:documents;"`
 	Amenities      []RealEstateAmenity `json:"amenities" gorm:"foreignKey:ReId;references:Id;association_foreignkey:Id" validate:"required"`
-	Images         []RealEstateImage   `json:"images" gorm:"foreignKey:ReId;references:Id;" validate:"required"`
+	Images         []common.Image      `json:"images" gorm:"many2many:real_estate_images;foreignKey:Id;joinForeignKey:ReId;References:Id;joinReferences:ImageId"`
 }
 
 func (c RealEstateCreate) TableName() string {
@@ -36,6 +37,12 @@ func (c RealEstateCreate) TableName() string {
 func (c *RealEstateCreate) Validate() error {
 	validate := validator.New()
 	err := validate.Struct(c)
+
+	if !goutil.IsEmpty(c.Images) {
+		for _, item := range c.Images {
+			err = validate.Struct(&item)
+		}
+	}
 	if err != nil {
 		return err
 	}

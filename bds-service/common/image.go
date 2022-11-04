@@ -14,6 +14,7 @@ type Image struct {
 	Height    int    `json:"height" gorm:"column:height;"`
 	CloudName string `json:"cloud_name,omitempty" gorm:"-"`
 	Extension string `json:"extension,omitempty" gorm:"-"`
+	OwnerId   int    `json:"omitempty" gorm:"column:owner_id;"`
 }
 
 func (j Image) TableName() string {
