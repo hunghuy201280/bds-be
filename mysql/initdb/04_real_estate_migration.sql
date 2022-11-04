@@ -81,29 +81,30 @@ CREATE TABLE `real_estate_types` (
 
 DROP TABLE IF EXISTS `real_estates`;
 CREATE TABLE `real_estates` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `province_id` int NOT NULL,
-  `district_id` int NOT NULL,
-  `ward_id` int NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `latitude` float NOT NULL,
-  `longitude` float NOT NULL,
-  `price` float NOT NULL,
-  `owner_id` int NOT NULL,
-  `floors` int NOT NULL,
-  `area` float NOT NULL,
-  `no_bedrooms` int NOT NULL,
-  `no_wc` int NOT NULL,
-  `house_facing` enum('east','north','west','south','south_east','south_west','north_east','north_west') DEFAULT NULL,
-  `balcony_facing` enum('east','north','west','south','south_east','south_west','north_east','north_west') DEFAULT NULL,
-  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `built_at` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `documents` text NOT NULL,
-  `status` int DEFAULT '1',
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                                `id` int NOT NULL AUTO_INCREMENT,
+                                `province_id` int NOT NULL,
+                                `district_id` int NOT NULL,
+                                `ward_id` int NOT NULL,
+                                `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                                `latitude` float NOT NULL,
+                                `longitude` float NOT NULL,
+                                `price` float NOT NULL,
+                                `owner_id` int NOT NULL,
+                                `floors` int NOT NULL,
+                                `area` float NOT NULL,
+                                `no_bedrooms` int NOT NULL,
+                                `no_wc` int NOT NULL,
+                                `house_facing` enum('east','north','west','south','south_east','south_west','north_east','north_west') DEFAULT NULL,
+                                `balcony_facing` enum('east','north','west','south','south_east','south_west','north_east','north_west') DEFAULT NULL,
+                                `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+                                `built_at` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                `interiors` text,
+                                `documents` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+                                `status` int DEFAULT '1',
+                                `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `real_estate_post_types` (`id`, `name`, `price_per_day`) VALUES
 (1, 'premium', 20000),

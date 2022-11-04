@@ -24,6 +24,7 @@ type RealEstate struct {
 	Reason         string              `json:"reason" gorm:"column:reason;"`
 	BuiltAt        string              `json:"built_at" gorm:"column:built_at;"`
 	Documents      string              `json:"documents" gorm:"column:documents;"`
+	Interiors      string              `json:"interiors" gorm:"column:interiors;"`
 	Amenities      []RealEstateAmenity `json:"amenities" gorm:"foreignKey:ReId;references:Id;"`
 	Images         []common.Image      `json:"images" gorm:"many2many:real_estate_images;foreignKey:Id;joinForeignKey:ReId;References:Id;joinReferences:ImageId"`
 }
