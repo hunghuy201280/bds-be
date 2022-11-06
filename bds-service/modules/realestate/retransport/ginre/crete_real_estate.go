@@ -63,6 +63,7 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 			Reason:        fake.Lorem().Sentence(30),
 			BuiltAt:       strconv.Itoa(int(fake.Float32(0, 1990, 2020))),
 			Documents:     strings.Join(strings.Split(fake.Lorem().Sentence(10), " "), ";"),
+			Interiors:     strings.Join(strings.Split(fake.Lorem().Sentence(10), " "), ";"),
 			Amenities: []remodel.Amenity{
 				{
 					Id: 3,
@@ -76,10 +77,10 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 			},
 			Images: []common.Image{
 				{
-					Id: 1,
+					Id: 4,
 				},
 				{
-					Id: 2,
+					Id: 5,
 				},
 			},
 		}
