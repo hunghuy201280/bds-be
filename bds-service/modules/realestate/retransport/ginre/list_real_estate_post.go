@@ -12,7 +12,7 @@ import (
 	"strconv"
 )
 
-func ListRealEstate(context component.AppContext) gin.HandlerFunc {
+func ListRealEstatePost(context component.AppContext) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var filter remodel.Filter
 		var paging common.Paging
@@ -22,12 +22,10 @@ func ListRealEstate(context component.AppContext) gin.HandlerFunc {
 		if err := c.ShouldBindQuery(&paging); err != nil {
 			panic(common.ErrInvalidRequest(err))
 		}
-
 		ll.Info("{}\n---\n{}", l.Object("paging", paging), l.Object("filter", filter))
-
 		store := restore.NewSQLStore(context.GetMainDbConnection())
-		biz := rebiz.NewListRealEstateBiz(store)
-		result, err := biz.ListRealEstate(c.Request.Context(), &filter, &paging)
+		biz := rebiz.NewListRealEstatePostBiz(store)
+		result, err := biz.ListRealEstatePost(c.Request.Context(), &filter, &paging)
 
 		if err != nil {
 			panic(err)
