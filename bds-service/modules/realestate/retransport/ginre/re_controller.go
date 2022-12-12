@@ -14,4 +14,5 @@ func RegisterHandler(engine *gin.Engine, ctx component.AppContext) {
 	realEstates.POST("/insert-fake-data", CreateFakeData(ctx))
 	realEstates.POST("/list", ListRealEstate(ctx))
 	realEstates.GET("/app-profile", GetAppProfile(ctx))
+	realEstates.GET("/search", SearchByKeyword(ctx))
 }

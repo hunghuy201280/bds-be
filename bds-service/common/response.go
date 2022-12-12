@@ -23,7 +23,7 @@ func NewSuccessResponse(statusCode int, message string, data, paging, filter any
 }
 func SimpleSuccessResponse(data any) *successRes {
 	return NewSuccessResponse(
-		http.StatusOK, "",
+		http.StatusOK, "success",
 		data,
 		nil,
 		nil,

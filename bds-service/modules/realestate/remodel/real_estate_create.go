@@ -9,9 +9,9 @@ import (
 type RealEstateCreate struct {
 	common.SQLModel
 	ReTypeId      int            `json:"re_type_id" gorm:"column:re_type_id" validate:"required"`
-	ProvinceId    int            `json:"province_id" gorm:"column:province_id;" validate:"required,gte=0"`
-	DistrictId    int            `json:"district_id" gorm:"column:district_id;" validate:"required,gte=0"`
-	WardId        int            `json:"ward_id" gorm:"column:ward_id;" validate:"required,gte=0"`
+	ProvinceId    string         `json:"province_id" gorm:"column:province_id;" validate:"required,gte=0"`
+	DistrictId    string         `json:"district_id" gorm:"column:district_id;" validate:"required,gte=0"`
+	WardId        string         `json:"ward_id" gorm:"column:ward_id;" validate:"required,gte=0"`
 	Address       string         `json:"address" gorm:"column:address;" validate:"max=255,required"`
 	Latitude      float32        `json:"latitude" gorm:"column:latitude;" validate:"required,gte=-90,lte=90"`
 	Longitude     float32        `json:"longitude" gorm:"column:longitude;" validate:"required,gte=-180,lte=180"`

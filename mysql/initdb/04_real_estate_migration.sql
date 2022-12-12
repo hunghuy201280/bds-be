@@ -98,9 +98,9 @@ CREATE TABLE `real_estate_types` (
 DROP TABLE IF EXISTS `real_estates`;
 CREATE TABLE `real_estates` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `province_id` int NOT NULL,
-  `district_id` int NOT NULL,
-  `ward_id` int NOT NULL,
+  `province_id` varchar(20) NOT NULL,
+  `district_id` varchar(20) NOT NULL,
+  `ward_id` varchar(20) NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,

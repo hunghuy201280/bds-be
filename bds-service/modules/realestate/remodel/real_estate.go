@@ -8,9 +8,9 @@ type RealEstate struct {
 	common.SQLModel
 	RealEstateType RealEstateType `json:"real_estate_type" gorm:"foreignKey:ReTypeId;references:Id"`
 	ReTypeId       int            `json:"-" gorm:"column:re_type_id"`
-	ProvinceId     int            `json:"province_id" gorm:"column:province_id;"`
-	DistrictId     int            `json:"district_id" gorm:"column:district_id;"`
-	WardId         int            `json:"ward_id" gorm:"column:ward_id;"`
+	ProvinceId     string         `json:"province_id" gorm:"column:province_id;"`
+	DistrictId     string         `json:"district_id" gorm:"column:district_id;"`
+	WardId         string         `json:"ward_id" gorm:"column:ward_id;"`
 	Address        string         `json:"address" gorm:"column:address;"`
 	Latitude       float32        `json:"latitude" gorm:"column:latitude;"`
 	Longitude      float32        `json:"longitude" gorm:"column:longitude;"`
