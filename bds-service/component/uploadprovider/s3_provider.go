@@ -66,7 +66,7 @@ func (provider s3Provider) SaveFileUploaded(ctx context.Context, data []byte, ds
 		return nil, err
 	}
 	img := &common.Image{
-		Url:       fmt.Sprintf("%s/%s", provider.domain, dst),
+		Url:       fmt.Sprintf("%s/%s", "https://"+provider.domain, dst),
 		CloudName: "s3",
 	}
 	return img, nil
