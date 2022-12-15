@@ -46,6 +46,7 @@ func CreateFakeData(ctx component.AppContext) gin.HandlerFunc {
 		//id3 := 3
 		data := remodel.RealEstateCreate{
 			ReTypeId:      common.RandInt(1, 20),
+			Name:          "Nhà rộng cửa cao, dọn vào là ở",
 			ProvinceId:    "29",
 			DistrictId:    "039",
 			WardId:        "23042",

@@ -98,6 +98,7 @@ CREATE TABLE `real_estate_types` (
 DROP TABLE IF EXISTS `real_estates`;
 CREATE TABLE `real_estates` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
   `province_id` varchar(20) NOT NULL,
   `district_id` varchar(20) NOT NULL,
   `ward_id` varchar(20) NOT NULL,

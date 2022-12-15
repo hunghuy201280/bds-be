@@ -8,6 +8,7 @@ type RealEstate struct {
 	common.SQLModel
 	RealEstateType RealEstateType `json:"real_estate_type" gorm:"foreignKey:ReTypeId;references:Id"`
 	ReTypeId       int            `json:"-" gorm:"column:re_type_id"`
+	Name           string         `json:"name" gorm:"column:name;"`
 	ProvinceId     string         `json:"province_id" gorm:"column:province_id;"`
 	DistrictId     string         `json:"district_id" gorm:"column:district_id;"`
 	WardId         string         `json:"ward_id" gorm:"column:ward_id;"`

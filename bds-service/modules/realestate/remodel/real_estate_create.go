@@ -9,6 +9,7 @@ import (
 type RealEstateCreate struct {
 	common.SQLModel
 	ReTypeId      int            `json:"re_type_id" gorm:"column:re_type_id" validate:"required"`
+	Name          string         `json:"name" gorm:"column:name;" validate:"required,min=1"`
 	ProvinceId    string         `json:"province_id" gorm:"column:province_id;" validate:"required,gte=0"`
 	DistrictId    string         `json:"district_id" gorm:"column:district_id;" validate:"required,gte=0"`
 	WardId        string         `json:"ward_id" gorm:"column:ward_id;" validate:"required,gte=0"`
@@ -38,7 +39,9 @@ func (c RealEstateCreate) TableName() string {
 func (c *RealEstateCreate) Validate() error {
 	validate := validator.New()
 	err := validate.Struct(c)
-
+	if err != nil {
+		return err
+	}
 	if !goutil.IsEmpty(c.Images) {
 		for _, item := range c.Images {
 			err = validate.Struct(&item)

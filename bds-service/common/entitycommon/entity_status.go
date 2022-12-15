@@ -16,7 +16,12 @@ const (
 func (e *EntityStatus) Scan(value any) error {
 	bytes, ok := value.([]byte)
 	if !ok {
-		return errors.New(fmt.Sprint("Failed to unmarshal JSONB value:", value))
+		intValue, ok := value.(int64)
+		if !ok {
+			return errors.New(fmt.Sprint("Failed to unmarshal JSONB value:", value))
+		}
+		*e = EntityStatus(intValue)
+		return nil
 	}
 	*e = EntityStatus(bytes[0])
 	return nil
